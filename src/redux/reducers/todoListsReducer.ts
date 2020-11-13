@@ -1,5 +1,6 @@
 const DEFAULT_LIST = [
   { id: Date.now(), text: "This is todo list", checked: false },
+  { id: Date.now() + 1, text: "Double Click the text to edit", checked: false },
 ];
 
 const todoListsReducer = (todoLists = DEFAULT_LIST, action: any) => {
@@ -26,6 +27,14 @@ const todoListsReducer = (todoLists = DEFAULT_LIST, action: any) => {
         (list) => list.id !== action.payload.id
       );
       return deletedList;
+    case "EDIT_LIST":
+      const editedList = todoLists.map((list) => {
+        if (list.id === action.payload.id) {
+          list.text = action.payload.text;
+        }
+        return list;
+      });
+      return editedList;
     default:
       return todoLists;
   }

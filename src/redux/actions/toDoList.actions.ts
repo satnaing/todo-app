@@ -26,3 +26,11 @@ export const deleteList = (id: number) => ({
     id,
   },
 });
+
+export const editList = (id: number, text: any) => ({
+  type: "EDIT_LIST",
+  payload: {
+    id,
+    text,
+  },
+});
