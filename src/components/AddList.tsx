@@ -1,43 +1,43 @@
-import React from "react";
-
-// Material-UI
-import Input from "@material-ui/core/Input";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
+import React, { useRef } from "react";
+import { connect } from "react-redux";
+import addToDoList from "../redux/actions/addToDoList";
 
 interface Props {
-  text: string | number;
-  handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleAdd: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  addToDoList: (txt: any) => Promise<any>;
 }
 
-const AddList: React.FC<Props> = ({ text, handleInput, handleAdd }) => {
+const AddList: React.FC<Props> = (props) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    props.addToDoList(inputRef?.current?.value);
+  };
   return (
     <form>
-      <Grid container spacing={1}>
-        <Grid item sm={1} />
-        <Grid item xs={12} sm={8}>
-          <Input
-            placeholder="Type Anything"
-            fullWidth
-            value={text}
-            onChange={handleInput}
-          />
-        </Grid>
+      <input
+        type="text"
+        // value={text}
+        // onChange={handleInput}
+        ref={inputRef}
+      />
 
-        <Grid item xs={12} sm={3}>
-          <Button
-            type="submit"
-            onClick={handleAdd}
-            variant="contained"
-            color="primary"
-          >
-            Add
-          </Button>
-        </Grid>
-      </Grid>
+      <button
+        type="submit"
+        onClick={handleClick}
+        // onClick={(inputRef?.current?.value) => addToDoList(inputRef?.current?.value)}
+      >
+        Add
+      </button>
     </form>
   );
 };
 
-export default AddList;
+const mapStateToProps = (state: any) => {
+  return { lists: state.todolists };
+};
+
+const mapDispatchToProps = (dispatch: any) => ({
+  addToDoList: (txt: any) => dispatch(addToDoList(txt)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddList);
