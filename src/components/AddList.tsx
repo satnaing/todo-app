@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
-import addToDoList from "../redux/actions/addToDoList";
+import { addToDoList } from "../redux/actions/toDoList.actions";
 
 interface Props {
   addToDoList: (txt: any) => Promise<any>;
@@ -8,16 +8,25 @@ interface Props {
 
 const AddList: React.FC<Props> = (props) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const [spanText, setSpanText] = useState("");
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSpanText(e.target.value);
+  };
+
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     props.addToDoList(inputRef?.current?.value);
+    setSpanText("");
   };
+
   return (
     <form>
       <input
         type="text"
         // value={text}
-        // onChange={handleInput}
+        onChange={handleInput}
+        value={spanText}
         ref={inputRef}
       />
 

@@ -11,6 +11,14 @@ const todoListsReducer = (todoLists = DEFAULT_LIST, action: any) => {
         checked: false,
       };
       return [...todoLists, newObj];
+    case "TOGGLE_CHECK":
+      const newList = todoLists.map((list) => {
+        if (list.id === action.payload.id) {
+          list.checked = !list.checked;
+        }
+        return list;
+      });
+      return newList;
     default:
       return todoLists;
   }
