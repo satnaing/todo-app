@@ -19,3 +19,10 @@ export const toggleChecked = (id: number) => ({
     id,
   },
 });
+
+export const deleteList = (id: number) => ({
+  type: "DELETE_LIST",
+  payload: {
+    id,
+  },
+});

@@ -1,4 +1,6 @@
-const DEFAULT_LIST = [{ id: 1, text: "This is todo list", checked: false }];
+const DEFAULT_LIST = [
+  { id: Date.now(), text: "This is todo list", checked: false },
+];
 
 const todoListsReducer = (todoLists = DEFAULT_LIST, action: any) => {
   switch (action.type) {
@@ -6,7 +8,7 @@ const todoListsReducer = (todoLists = DEFAULT_LIST, action: any) => {
       return todoLists;
     case "ADD_TODO":
       const newObj = {
-        id: todoLists.length + 1,
+        id: Date.now(),
         text: action.payload.text,
         checked: false,
       };
@@ -19,6 +21,11 @@ const todoListsReducer = (todoLists = DEFAULT_LIST, action: any) => {
         return list;
       });
       return newList;
+    case "DELETE_LIST":
+      const deletedList = todoLists.filter(
+        (list) => list.id !== action.payload.id
+      );
+      return deletedList;
     default:
       return todoLists;
   }
