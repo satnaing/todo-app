@@ -2,6 +2,9 @@ import React from "react";
 import ListItem from "./ListItem";
 import { connect } from "react-redux";
 
+// Material-UI
+import List from "@material-ui/core/List";
+
 export type listObj = {
   id: number;
   text: string;
@@ -14,11 +17,13 @@ interface Props {
 
 const ToDoLists: React.FC<Props> = ({ lists }) => {
   return (
-    <ul>
+    <List>
+      {/* <List dense> */}
       {lists.map((list) => (
         <ListItem key={list.id} list={list} />
       ))}
-    </ul>
+      {/* </List> */}
+    </List>
   );
 };
 

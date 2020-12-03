@@ -1,6 +1,6 @@
 import React from "react";
-import AddList from "./components/AddList";
-import ToDoLists from "./components/ToDoLists";
+import Layout from "./components/Layout";
+import ToDoCard from "./components/ToDoCard";
 
 const App: React.FC = () => {
   // const [text, setText] = useState("");
@@ -39,21 +39,12 @@ const App: React.FC = () => {
   // };
 
   return (
-    <>
-      <h1>todoList</h1>
+    <Layout>
+      {/* <h1>todoList</h1>
       <ToDoLists />
-      {/* <ToDoLists
-      // lists={toDoLists}
-      // handleDelete={handleDelete}
-      // handleCheck={handleCheck}
-      /> */}
-      <AddList />
-      {/* <AddList 
-      handleAdd={handleAdd} 
-      handleInput={handleInput} 
-      text={text} 
-      /> */}
-    </>
+      <AddList /> */}
+      <ToDoCard />
+    </Layout>
   );
 };
 

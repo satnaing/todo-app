@@ -2,6 +2,11 @@ import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
 import { addToDoList } from "../redux/actions/toDoList.actions";
 
+// Material-UI
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+
 interface Props {
   addToDoList: (txt: any) => Promise<any>;
 }
@@ -12,32 +17,47 @@ const AddList: React.FC<Props> = (props) => {
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSpanText(e.target.value);
+    // console.log(e.target.value);
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    props.addToDoList(inputRef?.current?.value);
+    // props.addToDoList(inputRef?.current?.value);
+    props.addToDoList(spanText);
+    // console.log(spanText);
     setSpanText("");
   };
 
   return (
-    <form>
-      <input
-        type="text"
-        // value={text}
-        onChange={handleInput}
-        value={spanText}
-        ref={inputRef}
-      />
+    // <form onSubmit={(e) => e.preventDefault()}>
+    <Grid container direction="row" spacing={3} style={{ padding: "0 10px" }}>
+      <Grid item xs={2}></Grid>
+      <Grid item xs={6}>
+        <form id="my-form" onSubmit={(e) => e.preventDefault()}>
+          <TextField
+            fullWidth
+            onChange={handleInput}
+            value={spanText}
+            ref={inputRef}
+            placeholder="Add anything"
+          />
+        </form>
+      </Grid>
 
-      <button
-        type="submit"
-        onClick={handleClick}
-        // onClick={(inputRef?.current?.value) => addToDoList(inputRef?.current?.value)}
-      >
-        Add
-      </button>
-    </form>
+      <Grid item xs={2}>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          onClick={handleClick}
+          form="my-form"
+        >
+          Add
+        </Button>
+      </Grid>
+      <Grid item xs={2}></Grid>
+    </Grid>
+    // </form>
   );
 };
 

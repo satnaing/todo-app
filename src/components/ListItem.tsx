@@ -9,6 +9,17 @@ import {
 
 import "./to-do-list.css";
 
+// Material-UI
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Checkbox from "@material-ui/core/Checkbox";
+import TextField from "@material-ui/core/TextField";
+import { default as LI } from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import ListItemText from "@material-ui/core/ListItemText";
+
 interface Props {
   list: listObj;
   toggleChecked: (id: number) => any;
@@ -22,7 +33,7 @@ const ListItem: React.FC<Props> = ({
   deleteList,
   editList,
 }) => {
-  const [isChecked, setIsChecked] = useState(list.checked);
+  const [isChecked, setIsChecked] = useState(list.checked || false);
   const [isEdit, setIsEdit] = useState(false);
   const [editText, setEditText] = useState(list.text);
   const [editID, setEditID] = useState(0);
@@ -72,36 +83,77 @@ const ListItem: React.FC<Props> = ({
   };
 
   return (
-    <li>
+    <LI dense button>
       {!isEdit ? (
         <>
-          {" "}
-          <input
-            type="checkbox"
-            onChange={() => handleCheck(list.id)}
-            defaultChecked={list.checked ? true : false}
-          />
-          <span
+          <ListItemIcon>
+            <Checkbox
+              color="primary"
+              onChange={() => handleCheck(list.id)}
+              checked={list.checked ? true : false}
+              // defaultChecked={list.checked ? true : false}
+            />
+          </ListItemIcon>
+          <ListItemText
             className={isChecked ? "checked" : ""}
             onDoubleClick={() => handleDblClick(list.id, list.text)}
-          >
-            {list.text}
-          </span>
-          <button onClick={() => handleDelete(list.id)}>Delete</button>
+            primary={`${list.text}`}
+          />
+          <ListItemSecondaryAction>
+            <IconButton
+              edge="end"
+              aria-label="delete"
+              onClick={() => handleDelete(list.id)}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </ListItemSecondaryAction>
+          {/* <ListItemSecondaryAction>
+            <IconButton
+              edge="end"
+              aria-label="delete"
+              onClick={() => handleDelete(list.id)}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </ListItemSecondaryAction> */}
         </>
       ) : (
-        <form ref={node}>
-          <input
-            type="text"
-            value={editText}
+        <form ref={node} onSubmit={(e) => e.preventDefault()}>
+          <ListItemIcon>
+            <Checkbox
+              disabled
+              inputProps={{ "aria-label": "disabled checkbox" }}
+            />
+          </ListItemIcon>
+          <TextField
+            defaultValue={editText}
             onChange={handleChange}
-            onFocus={(e) => e.target.select()}
+            // onFocus={(e) => e.target.select()}
+            autoFocus
+            margin="dense"
           />
-          <button onClick={handleEdit}>Edit</button>
-          <button onClick={() => setIsEdit(false)}>Cancel</button>
+          <ListItemSecondaryAction>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              onClick={handleEdit}
+              size="small"
+            >
+              Edit
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() => setIsEdit(false)}
+              size="small"
+            >
+              Cancel
+            </Button>
+          </ListItemSecondaryAction>
         </form>
       )}
-    </li>
+    </LI>
   );
 };
 
