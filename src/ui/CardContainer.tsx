@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       width: "40vh",
+      minWidth: "350px",
     },
   },
   addItemAvatar: {

@@ -12,7 +12,7 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles((theme) => ({
   root: { backgroundColor: theme.palette.common.black },
   bg: {
-    backgroundImage: "url('./Wave2.svg')",
+    background: "url('./Wave2.svg')",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     height: "100vh",
