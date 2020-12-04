@@ -25,6 +25,10 @@ import IconButton from "@material-ui/core/IconButton";
 import Input from "@material-ui/core/Input";
 import EditIcon from "@material-ui/icons/Edit";
 
+import FormControl from "@material-ui/core/FormControl";
+import AddList from "../components/AddList";
+import ToDoLists from "../components/ToDoLists";
+
 const useStyles = makeStyles((theme) => ({
   root: { backgroundColor: theme.palette.common.black },
   bg: {
@@ -86,223 +90,12 @@ const Layout: React.FC = ({ children }) => {
         </Grid>
         <Grid item>
           <CardContainer icon="add" headText="ADD ITEM">
-            <Grid container>
-              <Grid item sm={10}>
-                <TextField
-                  id="standard-start-adornment"
-                  label="What do you want to do?"
-                  color="secondary"
-                  fullWidth
-                  classes={{ root: classes.textInput }}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </Grid>
-              <Grid item sm={2} style={{ textAlign: "center" }}>
-                <Icon color="secondary" style={{ fontSize: "3rem" }}>
-                  add_circle
-                </Icon>
-              </Grid>
-            </Grid>
+            <AddList />
           </CardContainer>
         </Grid>
         <Grid item>
           <CardContainer icon="" headText="TO-DO LIST">
-            <List>
-              <ListItem>
-                <Checkbox
-                  edge="start"
-                  // checked={}
-                  tabIndex={-1}
-                  disableRipple
-                  style={{ color: "#FFD369" }}
-                />
-                <ListItemText
-                  style={{ color: "#EEEEEE" }}
-                  primary="Single-line item"
-                />
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete">
-                    <DeleteIcon style={{ color: "#FFD369" }} />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-
-              <ListItem>
-                <Checkbox
-                  edge="start"
-                  // checked={}
-                  tabIndex={-1}
-                  disableRipple
-                  style={{ color: "#FFD369" }}
-                />
-                {/* <form noValidate autoComplete="off"> */}
-                <Input
-                  style={{
-                    color: "#EEEEEE",
-                    borderColor: "#EEEEEE",
-                    width: "100%",
-                  }}
-                  color="secondary"
-                  fullWidth
-                  defaultValue="Hello world"
-                />
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="edit">
-                    <EditIcon style={{ color: "#FFD369" }} />
-                  </IconButton>
-                </ListItemSecondaryAction>
-                {/* </form> */}
-              </ListItem>
-
-              {/* <ListItem>
-                <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    // checked={}
-                    tabIndex={-1}
-                    disableRipple
-                    style={{ color: "#FFD369" }}
-                  />
-                </ListItemIcon>
-                <ListItemText
-                  style={{ color: "#EEEEEE" }}
-                  primary="Single-line item"
-                />
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete">
-                    <DeleteIcon style={{ color: "#FFD369" }} />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-
-              <ListItem>
-                <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    // checked={}
-                    tabIndex={-1}
-                    disableRipple
-                    style={{ color: "#FFD369" }}
-                  />
-                </ListItemIcon>
-                <ListItemText
-                  style={{ color: "#EEEEEE" }}
-                  primary="Single-line item"
-                />
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete">
-                    <DeleteIcon style={{ color: "#FFD369" }} />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-
-              <ListItem>
-                <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    // checked={}
-                    tabIndex={-1}
-                    disableRipple
-                    style={{ color: "#FFD369" }}
-                  />
-                </ListItemIcon>
-                <ListItemText
-                  style={{ color: "#EEEEEE" }}
-                  primary="Single-line item"
-                />
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete">
-                    <DeleteIcon style={{ color: "#FFD369" }} />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-
-              <ListItem>
-                <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    // checked={}
-                    tabIndex={-1}
-                    disableRipple
-                    style={{ color: "#FFD369" }}
-                  />
-                </ListItemIcon>
-                <ListItemText
-                  style={{ color: "#EEEEEE" }}
-                  primary="Single-line item"
-                />
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete">
-                    <DeleteIcon style={{ color: "#FFD369" }} />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-
-              <ListItem>
-                <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    // checked={}
-                    tabIndex={-1}
-                    disableRipple
-                    style={{ color: "#FFD369" }}
-                  />
-                </ListItemIcon>
-                <ListItemText
-                  style={{ color: "#EEEEEE" }}
-                  primary="Single-line item"
-                />
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete">
-                    <DeleteIcon style={{ color: "#FFD369" }} />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-
-              <ListItem>
-                <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    // checked={}
-                    tabIndex={-1}
-                    disableRipple
-                    style={{ color: "#FFD369" }}
-                  />
-                </ListItemIcon>
-                <ListItemText
-                  style={{ color: "#EEEEEE" }}
-                  primary="Single-line item"
-                />
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete">
-                    <DeleteIcon style={{ color: "#FFD369" }} />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-
-              <ListItem>
-                <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    // checked={}
-                    tabIndex={-1}
-                    disableRipple
-                    style={{ color: "#FFD369" }}
-                  />
-                </ListItemIcon>
-                <ListItemText
-                  style={{ color: "#EEEEEE" }}
-                  primary="Single-line item"
-                />
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete">
-                    <DeleteIcon style={{ color: "#FFD369" }} />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem> */}
-            </List>
+            <ToDoLists />
           </CardContainer>
         </Grid>
       </Grid>

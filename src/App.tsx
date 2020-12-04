@@ -8,11 +8,10 @@ import Layout from "./ui/Layout";
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      {/* <Layout> */}
-      <h1>todoList</h1>
+      <Layout />
+      {/* <h1>todoList</h1>
       <ToDoLists />
-      <AddList />
-      {/* </Layout> */}
+      <AddList /> */}
     </ThemeProvider>
   );
 };
