@@ -36,9 +36,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       width: "60vh",
     },
-    [theme.breakpoints.down("xs")]: {
-      width: "40vh",
-    },
+    // [theme.breakpoints.down("xs")]: {
+    //   width: "40vh",
+    // },
   },
   addItemAvatar: {
     backgroundColor: theme.palette.secondary.main,
