@@ -11,10 +11,20 @@ import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
 import { Divider, Paper } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
+  "@global": {
+    "*::-webkit-scrollbar": {
+      width: "0.4em",
+    },
+    "*::-webkit-scrollbar-thumb": {
+      backgroundColor: theme.palette.secondary.main,
+      borderRadius: "10px",
+      outline: "none",
+    },
+  },
   cardParent: {
     background: "transparent",
     position: "relative",
-    margin: "3rem auto",
+    margin: "2rem auto",
   },
   cardChildren: {
     maxHeight: "12rem",

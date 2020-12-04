@@ -9,9 +9,6 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <Layout />
-      {/* <h1>todoList</h1>
-      <ToDoLists />
-      <AddList /> */}
     </ThemeProvider>
   );
 };

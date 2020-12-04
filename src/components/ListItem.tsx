@@ -10,17 +10,32 @@ import {
 import "./to-do-list.css";
 
 // Material-UI
-import List from "@material-ui/core/List";
 import { default as LI } from "@material-ui/core/ListItem";
+import { makeStyles } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Input from "@material-ui/core/Input";
-import TextField from "@material-ui/core/TextField";
 import EditIcon from "@material-ui/icons/Edit";
+
+const useStyles = makeStyles((theme) => ({
+  checkbox: {
+    color: theme.palette.secondary.main,
+  },
+  deleteIcon: {
+    color: theme.palette.secondary.main,
+  },
+  editIcon: {
+    color: theme.palette.secondary.main,
+  },
+  input: {
+    color: "#EEEEEE",
+    borderColor: "#EEEEEE",
+    width: "90%",
+  },
+}));
 
 interface Props {
   list: listObj;
@@ -35,6 +50,7 @@ const ListItem: React.FC<Props> = ({
   deleteList,
   editList,
 }) => {
+  const classes = useStyles();
   const [isChecked, setIsChecked] = useState(list.checked);
   const [isEdit, setIsEdit] = useState(false);
   const [editText, setEditText] = useState(list.text);
@@ -79,49 +95,13 @@ const ListItem: React.FC<Props> = ({
     // e.preventDevault();
     if (node?.current?.contains(e.target)) {
       // inside click
-      // e.preventDefault();
       return;
     }
     // outside click
     setIsEdit(false);
   };
 
-  // const handleSubmit = (e: any) => {
-  //   e.preventDefault();
-  // };
-
   return (
-    // <LI>
-    // {!isEdit ? (
-    //   <>
-    //     {" "}
-    //       <input
-    //         type="checkbox"
-    //         onChange={() => handleCheck(list.id)}
-    //         defaultChecked={list.checked ? true : false}
-    //       />
-    //       <span
-    //         className={isChecked ? "checked" : ""}
-    //         onDoubleClick={() => handleDblClick(list.id, list.text)}
-    //       >
-    //         {list.text}
-    //       </span>
-    //       <button onClick={() => handleDelete(list.id)}>Delete</button>
-    //     </>
-    //   ) : (
-    //     <form ref={node}>
-    //       <input
-    //         type="text"
-    //         value={editText}
-    //         onChange={handleChange}
-    //         onFocus={(e) => e.target.select()}
-    //       />
-    //       <button onClick={handleEdit}>Edit</button>
-    //       <button onClick={() => setIsEdit(false)}>Cancel</button>
-    //     </form>
-    //   )}
-    // </LI>
-
     <LI>
       {!isEdit ? (
         <>
@@ -131,7 +111,7 @@ const ListItem: React.FC<Props> = ({
             checked={list.checked ? true : false}
             tabIndex={-1}
             disableRipple
-            style={{ color: "#FFD369" }}
+            className={classes.checkbox}
             onChange={() => handleCheck(list.id)}
           />
           <ListItemText
@@ -140,15 +120,13 @@ const ListItem: React.FC<Props> = ({
             className={isChecked ? "checked" : ""}
             onDoubleClick={() => handleDblClick(list.id, list.text)}
           />
-          <ListItemSecondaryAction>
-            <IconButton
-              edge="end"
-              aria-label="delete"
-              onClick={() => handleDelete(list.id)}
-            >
-              <DeleteIcon style={{ color: "#FFD369" }} />
-            </IconButton>
-          </ListItemSecondaryAction>
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            onClick={() => handleDelete(list.id)}
+          >
+            <DeleteIcon className={classes.deleteIcon} />
+          </IconButton>
         </>
       ) : (
         <>
@@ -158,7 +136,7 @@ const ListItem: React.FC<Props> = ({
             disabled
             tabIndex={-1}
             disableRipple
-            style={{ color: "#FFD369" }}
+            className={classes.checkbox}
           />
           <form
             ref={node}
@@ -166,15 +144,10 @@ const ListItem: React.FC<Props> = ({
             style={{ width: "100%" }}
           >
             <Input
-              style={{
-                color: "#EEEEEE",
-                borderColor: "#EEEEEE",
-                width: "90%",
-              }}
+              className={classes.input}
               color="secondary"
               fullWidth
               defaultValue={editText}
-              // value={editText}
               onChange={handleChange}
               onFocus={(e) => e.target.select()}
             />
@@ -185,7 +158,7 @@ const ListItem: React.FC<Props> = ({
                 type="submit"
                 onClick={handleEdit}
               >
-                <EditIcon style={{ color: "#FFD369" }} />
+                <EditIcon className={classes.editIcon} />
               </IconButton>
             </ListItemSecondaryAction>
           </form>
