@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/to-do-list.css"],"names":[],"mappings":"AAAA,SACE,4BAA6B,CAC7B,UACF","file":"main.6f03d0dd.chunk.css","sourcesContent":[".checked {\n  text-decoration: line-through;\n  color: #999;\n}\n"]}
